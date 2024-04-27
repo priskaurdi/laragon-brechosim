@@ -3,30 +3,31 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PainelComponent } from '../painel/painel.component';
 
+// Definição das rotas
 const routes: Routes = [
   {
-    path: '',
-    component: PainelComponent,
-    pathMatch: 'full'
+    path: '', // Rota raiz
+    component: PainelComponent, // Componente associado à rota raiz
+    pathMatch: 'full' // Define que a rota só será correspondida se o caminho completo da URL estiver vazio
   },
   {
-    path: 'pais',
-    loadChildren: () => import('./pais/pais.module').then(m => m.PaisModule)
+    path: 'pais', // Rota para o módulo 'pais'
+    loadChildren: () => import('./pais/pais.module').then(m => m.PaisModule) // Carrega o módulo 'pais' sob demanda
   },
   {
-    path: 'brecho',
-    loadChildren: () => import('./brecho.module').then(m => m.BrechoModule)
+    path: 'brecho', // Rota para o módulo 'brecho'
+    loadChildren: () => import('./brecho.module').then(m => m.BrechoModule) // Carrega o módulo 'brecho' sob demanda
   }
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [], // Nenhuma declaração de componente neste módulo de roteamento
   imports: [
-    RouterModule.forRoot(routes),
-    CommonModule
+    RouterModule.forRoot(routes), // Importa o RouterModule e configura as rotas principais
+    CommonModule // Importa o CommonModule necessário para usar diretivas comuns do Angular
   ],
   exports: [
-    RouterModule
+    RouterModule // Exporta RouterModule para que as rotas estejam disponíveis para outros módulos
   ]
 })
 export class BrechoRoutingModule { }
