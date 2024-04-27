@@ -23,56 +23,54 @@ export class BrechoComponent implements OnInit {
     this.listar();
   }
 
-  interface BrechoResponse {
-    // Propriedades da resposta do serviço de listar brechós
-  }
+  // interface BrechoResponse {
+  //   // Propriedades da resposta do serviço de listar brechós
+  // }
 
   public buscarPaises(): void {
-    this._paisService.listar().subscribe((data: any[]) => {
-      this.paises = data;
+    this._paisService.listar().subscribe(resp => {
+      this.paises = resp;
     });
   }
   
   public listar(): void {
-    this._brechoService.listar().subscribe((data: BrechoResponse[]) => {
-      this.brecho = data;
+    this._brechoService.listar().subscribe(resp => {
+      this.brecho = resp;
     });
   }
 
   public criar(): void {
     if (
-      !this.brechoForm.nome ||
-      !this.brechoForm.descricao ||
-      !this.brechoForm.pais_id ||
-      !this.brechoForm.dt_fundacao
+      this.brechoForm.nome !== "" &&
+      this.brechoForm.descricao !== "" &&
+      this.brechoForm.pais_id !== "" &&
+      this.brechoForm.dt_fundacao !== ""
     ) {
-      return;
+      this._brechoService.criar(this.brechoForm).subscribe(resp => {
+        this.listar();
+        this.brecho = this._iniciarBrecho();
+        alert('Cadastrado!');
+      });
     }
-    this._brechoService.criar(this.brechoForm).subscribe(resp => {
-      this.listar();
-      this.brechoForm = this._iniciarBrecho();
-      alert('Cadastrado!');
-    });
   }
 
-  public editar(brechoItem): void {
-    this.brechoForm = brechoItem;
+  public editar(brecho: any): void {
+    this.brechoForm = Object.assign({}, brecho);
   }
 
   public atualizar(): void {
     if (
-      !this.brechoForm.nome ||
-      !this.brechoForm.descricao ||
-      !this.brechoForm.pais_id ||
-      !this.brechoForm.dt_fundacao
+      this.brechoForm.nome !== "" &&
+      this.brechoForm.descricao !== "" &&
+      this.brechoForm.pais_id !== "" &&
+      this.brechoForm.dt_fundacao !== "" 
     ) {
-      return;
+      this._brechoService.atualizar(this.brechoForm, this.brechoForm.id).subscribe(resp => {
+        alert('Atualizado!');
+        this.brecho = this._iniciarBrecho();
+        this.listar();
+      });
     }
-    this._brechoService.atualizar(this.brechoForm, this.brechoForm.id).subscribe(resp => {
-      alert('Atualizado!');
-      this.listar();
-      this.brechoForm = this._iniciarBrecho();
-    });
   }
 
   public cancelar(): void {
