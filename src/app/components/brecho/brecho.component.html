@@ -1,0 +1,71 @@
+<p>brecho works!</p>
+<h4>Cadastrar Brecho</h4>
+<form action="" class="m-bottom">
+  <div class="m-topo m-bottom">
+    <label for="nome">Nome <span class="txt-vermelho">*</span>:</label> <br>
+    <input type="text" name="nome" [(ngModel)]="brechoForm.nome">
+  </div>
+
+  <div class="m-topo m-bottom">
+    <label for="dtFundacao">Data da Fundação <span class="txt-vermelho">*</span>:</label> <br>
+    <input type="date" name="dtFundacao" [(ngModel)]="brechoForm.dt_fundacao">
+  </div>
+
+  <div class="m-topo m-bottom">
+    <label for="pais">País <span class="txt-vermelho">*</span>:</label> <br>
+    <select name="pais" [(ngModel)]="brechoForm.pais_id" [disabled]="brechoForm.id">
+      <option value="">Selecione...</option>
+      <option *ngFor="let pais of paises" value="{{ pais.id }}">{{ pais.nome }}</option>
+    </select>
+  </div>
+
+  <div class="m-topo m-bottom">
+    <label for="descricao">Descrição <span class="txt-vermelho">*</span>:</label> <br>
+    <textarea name="descricao" cols="30" rows="10" [(ngModel)]="brechoForm.descricao"></textarea>
+  </div>
+
+  <button *ngIf="!brechoForm.id" type="submit" class="btn" (click)="criar()">
+    Salvar
+  </button>
+
+  <button *ngIf="brechoForm.id" type="submit" class="btn" (click)="atualizar()">
+    Salvar
+  </button>
+  <button *ngIf="brechoForm.id" type="submit" class="btn" (click)="cancelar()">
+    Cancelar
+  </button>
+</form>
+
+<hr>
+
+<h4>Lista de Brecho</h4>
+<table class="table m-topo  m-bottom">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Data Fundação</th>
+      <th>Descrição</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="brecho.length > 0">
+    <tr *ngFor="let brecho of brecho;">
+      <td>{{ brecho.id }}</td>
+      <td>{{ brecho.nome }}</td>
+      <td>{{ brecho.dt_fundacao }}</td>
+      <td>{{ brecho.descricao }}</td>
+      <td class="text-center">
+        <button (click)="editar(brecho)">Editar</button>
+        <button (click)="excluir(brecho.id)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="brecho.length == 0">
+    <tr>
+      <td class="text-center" colspan="5">
+        Nenhum resultado encontrado.
+      </td>
+    </tr>
+  </tbody>
+</table>
