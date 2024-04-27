@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { PaisService } from 'src/app/services/pais.service';
-import { BrechoService } from 'src/app/services/brecho.service';
-
+import { PaisService } from 'src/app/services/pais.service.ts';
+import { BrechoService } from 'src/app/services/brecho.service.ts';
 
 @Component({
   selector: 'app-brecho',
-  standalone: true,
-  imports: [],
   templateUrl: './brecho.component.html',
-  styleUrl: './brecho.component.scss'
+  styleUrls: ['./brecho.component.scss']
 })
 export class BrechoComponent implements OnInit {
 
@@ -35,7 +32,7 @@ export class BrechoComponent implements OnInit {
   public listar(): void {
     this._brechoService.listar().subscribe(resp => {
       this.brecho = resp;
-    })
+    });
   }
 
   public criar(): void {
@@ -47,7 +44,7 @@ export class BrechoComponent implements OnInit {
     ) {
       this._brechoService.criar(this.brechoForm).subscribe(resp => {
         this.listar();
-        this.brecho = this._iniciarBrecho();
+        this.brechoForm = this._iniciarBrecho();
         alert('Cadastrado!');
       });
     }
@@ -57,7 +54,7 @@ export class BrechoComponent implements OnInit {
     this.brechoForm = Object.assign({}, brecho);
   }
 
-  public atualizar() {
+  public atualizar(): void {
     if (
       this.brechoForm.nome !== "" &&
       this.brechoForm.descricao !== "" &&
@@ -65,9 +62,9 @@ export class BrechoComponent implements OnInit {
       this.brechoForm.dt_fundacao !== ""
     ) {
       this._brechoService.atualizar(this.brechoForm, this.brechoForm.id).subscribe(resp => {
-        alert('Ataulizado!');
-        this.brecho = this._iniciarBrecho();
+        alert('Atualizado!');
         this.listar();
+        this.brechoForm = this._iniciarBrecho();
       });
     }
   }
@@ -90,7 +87,6 @@ export class BrechoComponent implements OnInit {
       descricao: '',
       dt_fundacao: '',
       pais_id: ''
-    }
+    };
   }
-
 }
