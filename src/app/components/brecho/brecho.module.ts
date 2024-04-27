@@ -15,7 +15,7 @@ import { BrechoService } from '../../services/brecho.service';
     BrechoComponent // Declara o componente BrechoComponent para uso dentro do módulo de brechó
   ],
   imports: [
-    RouterModule.forChild(routes), // Importa as rotas definidas para o módulo de brechó
+    //RouterModule.forChild(routes), // Importa as rotas definidas para o módulo de brechó
     //BrowserModule, // Importa BrowserModule para funcionalidades básicas do Angular relacionadas ao navegador
     //HttpClientModule, // Importa HttpClientModule para realizar requisições HTTP
     CommonModule, // Importa CommonModule para utilizar diretivas comuns do Angular

@@ -7,7 +7,7 @@ import { environment } from '../../environments';
 })
 export class PaisService {
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {}
 
   // Método para listar todos os países
     public listar() {
