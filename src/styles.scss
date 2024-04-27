@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     font-family: "Roboto", sans-serif !important;
+    margin: 20px;
+    background-color: #e2f8cf;
   }
   
   .titulo {
@@ -56,5 +58,19 @@ body {
     text-align: left;
     background-color: #04AA6D;
     color: white;
+  }
+
+  section{
+    padding: 60px 0;
+  }
+  #pricing.bg-cor {
+    background-color: #e1c8f8;
+  }
+  #pricing.img-cat {
+    margin: 0 auto;
+    width: 100px;
+  }
+  #reviews.bg-cor{
+      background-color: #fdf1bd;
   }
   
