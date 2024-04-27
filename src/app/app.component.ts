@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
 
   // 'templateUrl' especifica o URL do arquivo HTML que contém o template do componente
-  templateUrl: './app/app.component.html',
+  templateUrl: '.app/app.component.html';
 
   // 'styleUrls' especifica o URL do arquivo SCSS que contém os estilos do componente
   styleUrls: ['.app/app.component.scss']
