@@ -11,7 +11,9 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
 
   // 'styleUrls' especifica o URL do arquivo SCSS que contém os estilos do componente
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+
+  standalone: true
 })
 export class AppComponent {
   // 'title' é uma propriedade do componente usada no template para exibir o título
