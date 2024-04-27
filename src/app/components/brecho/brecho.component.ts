@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PaisService } from 'src/app/services/pais.service.ts';
-import { BrechoService } from 'src/app/services/brecho.service.ts';
+import { PaisService } from '../../services/pais.service';
+import { BrechoService } from '../../services/brecho.service';
 
 @Component({
   selector: 'app-brecho',
@@ -23,14 +23,22 @@ export class BrechoComponent implements OnInit {
     this.listar();
   }
 
+  interface PaisResponse {
+    // ... properties of the response from pais.service.listar()
+  }
+  
+  interface BrechoResponse {
+    // ... properties of the response from brecho.service.listar()
+  }
+
   public buscarPaises(): void {
-    this._paisService.listar().subscribe(resp => {
+    this._paisService.listar().subscribe((data: PaisResponse) => {
       this.paises = resp;
     });
   }
 
   public listar(): void {
-    this._brechoService.listar().subscribe(resp => {
+    this._brechoService.listar().subscribe((data: BrechoResponse) => {
       this.brecho = resp;
     });
   }

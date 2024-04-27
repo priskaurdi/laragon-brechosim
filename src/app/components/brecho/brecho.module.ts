@@ -5,8 +5,8 @@ import { BrechoRoutingModule } from './brecho-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrechoComponent } from './brecho.component';
-import { PaisService } from './pais.service';
-import { BrechoService } from './brecho.service.ts';
+import { PaisService } from '../../services/pais.service';
+import { BrechoService } from '../../services/brecho.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
