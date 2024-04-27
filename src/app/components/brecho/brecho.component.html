@@ -24,9 +24,9 @@
     <textarea name="descricao" cols="30" rows="10" [(ngModel)]="brechoForm.descricao"></textarea>
   </div>
 
-  <button *ngIf="!brechoForm.id" type="submit" class="btn" (click)="criar()">
+  <!-- <button *ngIf="!brechoForm.id" type="submit" class="btn" (click)="criar()">
     Salvar
-  </button>
+  </button> -->
 
   <button *ngIf="brechoForm.id" type="submit" class="btn" (click)="atualizar()">
     Salvar

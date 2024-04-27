@@ -11,11 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'pais',
-    loadChildren: () => import('www\brechosim\src\app\components\pais\pais.module.ts').then(m => m.PaisModule)
+    loadChildren: () => import('./pais/pais.module').then(m => m.PaisModule)
   },
   {
     path: 'brecho',
-    loadChildren: () => import('www\brechosim\src\app\components\brecho\brecho.module.ts').then(m => m.BrechoModule)
+    loadChildren: () => import('./brecho.module').then(m => m.BrechoModule)
   }
 ];
 
@@ -25,7 +25,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     CommonModule
   ],
-  exports:[
+  exports: [
     RouterModule
   ]
 })
