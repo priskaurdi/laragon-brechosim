@@ -1,19 +1,20 @@
-<p>pais works!</p>
+<p>pais works!</p> <!-- Texto de verificação de funcionamento do componente -->
+
 <h4>Cadastrar País</h4>
-<form action="" class="m-bottom">
+<form action="" class="m-bottom"> <!-- Formulário para cadastrar um país -->
   <div>
-    <label for="nome">Nome <span class="txt-vermelho">*</span>:</label> <br>
-    <input type="text" name="nome" [(ngModel)]="pais.nome">
+    <label for="nome">Nome <span class="txt-vermelho">*</span>:</label> <br> <!-- Campo de entrada para o nome do país -->
+    <input type="text" name="nome" [(ngModel)]="pais.nome"> <!-- Bind de duas vias para o nome do país -->
   </div>
 
-  <button *ngIf="!pais.id" type="submit" class="btn m-topo" (click)="salvar()">
+  <!-- Botões de ação para salvar, atualizar e cancelar -->
+  <button *ngIf="!pais.id" type="submit" class="btn m-topo" (click)="salvar()"> <!-- Botão para salvar um novo país -->
     Salvar
   </button>
-
-  <button *ngIf="pais.id" type="submit" class="btn m-topo" (click)="atualizar()">
+  <button *ngIf="pais.id" type="submit" class="btn m-topo" (click)="atualizar()"> <!-- Botão para atualizar um país existente -->
     Salvar
   </button>
-  <button *ngIf="pais.id" type="submit" class="btn m-topo" (click)="cancelar()">
+  <button *ngIf="pais.id" type="submit" class="btn m-topo" (click)="cancelar()"> <!-- Botão para cancelar a edição de um país -->
     Cancelar
   </button>
 </form>
@@ -21,27 +22,29 @@
 <hr>
 
 <h4>Lista de Países</h4>
-<table class="table m-topo m-bottom">
+<table class="table m-topo m-bottom"> <!-- Tabela para exibir a lista de países -->
   <thead>
     <tr>
-      <th>#</th>
-      <th>Nome</th>
-      <th>Ações</th>
+      <th>#</th> <!-- Cabeçalho da coluna de identificação -->
+      <th>Nome</th> <!-- Cabeçalho da coluna de nome -->
+      <th>Ações</th> <!-- Cabeçalho da coluna de ações -->
     </tr>
   </thead>
-  <tbody *ngIf="paises.length > 0">
+  <tbody *ngIf="paises.length > 0"> <!-- Verifica se há países na lista -->
+    <!-- Loop para exibir cada país na tabela -->
     <tr *ngFor="let pais of paises;">
-      <td>{{ pais.id }}</td>
-      <td>{{ pais.nome }}</td>
+      <td>{{ pais.id }}</td> <!-- Coluna com o ID do país -->
+      <td>{{ pais.nome }}</td> <!-- Coluna com o nome do país -->
       <td>
-        <button (click)="editar(pais)">Editar</button>
-        <button (click)="excluir(pais.id)">Excluir</button>
+        <!-- Botões de ação para editar e excluir o país -->
+        <button (click)="editar(pais)">Editar</button> <!-- Botão para editar o país -->
+        <button (click)="excluir(pais.id)">Excluir</button> <!-- Botão para excluir o país -->
       </td>
     </tr>
   </tbody>
-  <tbody *ngIf="paises.length == 0">
+  <tbody *ngIf="paises.length == 0"> <!-- Caso não haja países na lista -->
     <tr>
-      <td class="text-center" colspan="3">
+      <td class="text-center" colspan="3"> <!-- Mensagem indicando que nenhum resultado foi encontrado -->
         Nenhum resultado encontrado.
       </td>
     </tr>

@@ -9,9 +9,9 @@ import { BrechoService } from '../../services/brecho.service';
 })
 export class BrechoComponent implements OnInit {
 
-  public paises: any = []; // Lista de países
-  public brecho: any = []; // Lista de brechós
-  public brechoForm: any = this._iniciarBrecho(); // Objeto para o formulário de brechó
+  public paises: any = [];
+  public brecho: any = [];
+  public brechoForm: any = this._iniciarBrecho();
 
   constructor(
     private _paisService: PaisService,
@@ -19,85 +19,73 @@ export class BrechoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.buscarPaises(); // Inicializa a lista de países
-    this.listar(); // Lista os brechós existentes
+    this.buscarPaises();
+    this.listar();
   }
 
-  // Interface para a resposta do serviço de países
-  interface PaisResponse {
-    // Propriedades da resposta do serviço de listar países
-  }
-  
-  // Interface para a resposta do serviço de brechós
   interface BrechoResponse {
     // Propriedades da resposta do serviço de listar brechós
   }
 
-  // Método para buscar a lista de países
   public buscarPaises(): void {
-    this._paisService.listar().subscribe((data: PaisResponse) => {
-      this.paises = data; // Atribui os países obtidos ao array paises
+    this._paisService.listar().subscribe((data: any[]) => {
+      this.paises = data;
     });
   }
   
-  // Método para listar os brechós
   public listar(): void {
-    this._brechoService.listar().subscribe((data: BrechoResponse) => {
-      this.brecho = data; // Atribui os brechós obtidos ao array brecho
+    this._brechoService.listar().subscribe((data: BrechoResponse[]) => {
+      this.brecho = data;
     });
   }
 
-  // Método para criar um novo brechó
   public criar(): void {
     if (
-      this.brechoForm.nome !== "" &&
-      this.brechoForm.descricao !== "" &&
-      this.brechoForm.pais_id !== "" &&
-      this.brechoForm.dt_fundacao !== ""
+      !this.brechoForm.nome ||
+      !this.brechoForm.descricao ||
+      !this.brechoForm.pais_id ||
+      !this.brechoForm.dt_fundacao
     ) {
-      this._brechoService.criar(this.brechoForm).subscribe(resp => {
-        this.listar(); // Atualiza a lista de brechós após a criação
-        this.brechoForm = this._iniciarBrecho(); // Reinicia o formulário
-        alert('Cadastrado!');
-      });
+      return;
     }
+    this._brechoService.criar(this.brechoForm).subscribe(resp => {
+      this.listar();
+      this.brechoForm = this._iniciarBrecho();
+      alert('Cadastrado!');
+    });
   }
 
-  // Método para editar um brechó
   public editar(brechoItem): void {
-    this.brechoForm = Object.assign({}, brechoItem); // Copia os dados do brechó para o formulário de edição
+    this.brechoForm = brechoItem;
   }
 
-  // Método para atualizar um brechó
   public atualizar(): void {
     if (
-      this.brechoForm.nome !== "" &&
-      this.brechoForm.descricao !== "" &&
-      this.brechoForm.pais_id !== "" &&
-      this.brechoForm.dt_fundacao !== ""
+      !this.brechoForm.nome ||
+      !this.brechoForm.descricao ||
+      !this.brechoForm.pais_id ||
+      !this.brechoForm.dt_fundacao
     ) {
-      this._brechoService.atualizar(this.brechoForm, this.brechoForm.id).subscribe(resp => {
-        alert('Atualizado!');
-        this.listar(); // Atualiza a lista de brechós após a atualização
-        this.brechoForm = this._iniciarBrecho(); // Reinicia o formulário
-      });
+      return;
     }
+    this._brechoService.atualizar(this.brechoForm, this.brechoForm.id).subscribe(resp => {
+      alert('Atualizado!');
+      this.listar();
+      this.brechoForm = this._iniciarBrecho();
+    });
   }
 
-  // Método para cancelar a edição ou criação de um brechó
   public cancelar(): void {
-    this.brechoForm = this._iniciarBrecho(); // Reinicia o formulário
+    this.brechoForm = this._iniciarBrecho();
   }
 
-  // Método para excluir um brechó
   public excluir(id: number): void {
     this._brechoService.excluir(id).subscribe(resp => {
       alert('Excluído!');
-      this.listar(); // Atualiza a lista de brechós após a exclusão
+      this.listar();
     });
   }
 
-  // Método privado para inicializar o objeto brechoForm com valores padrão
   private _iniciarBrecho() {
     return {
       id: null,

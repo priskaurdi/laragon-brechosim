@@ -1,16 +1,25 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+// Importe o módulo do componente PaisModule para carregamento preguiçoso (lazy loading)
+import { PaisModule } from './components/pais/pais.module';
+
+// Define as rotas da aplicação
 const appRoutes: Routes = [
-  // ... other routes
+  // ... outras rotas
   {
-    path: 'pais', // Ensure this matches the path in BrechoRoutingModule
-    loadChildren: () => import('./pais/pais.module').then(m => m.PaisModule)
+    // Define o caminho da rota
+    path: 'pais', 
+
+    // Carrega o módulo do componente PaisModule de forma preguiçosa (lazy loading)
+    loadChildren: () => import('./components/pais/pais.module').then(m => m.PaisModule)
   }
 ];
 
 @NgModule({
-  // ... other imports and declarations
+  // Outros módulos importados e componentes declarados
   imports: [
+    // Importa o módulo RouterModule.forRoot para configurar as rotas raiz da aplicação
     RouterModule.forRoot(appRoutes)
   ],
   // ...

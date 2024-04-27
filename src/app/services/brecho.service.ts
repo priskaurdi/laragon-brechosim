@@ -9,22 +9,27 @@ export class BrechoService {
 
   constructor(private http: HttpClient) { }
 
+  // Método para listar todos os brechós
   public listar() {
     return this.http.get(environment.url_api + 'brecho');
   }
 
-  public criar(brecho: any) { // Corrigido o parâmetro para 'brecho'
-    return this.http.post(environment.url_api + 'brecho', brecho); // Corrigido o parâmetro para 'brecho'
+  // Método para criar um novo brechó
+  public criar(brecho: any) {
+    return this.http.post(environment.url_api + 'brecho', brecho);
   }
 
+  // Método para buscar um brechó por ID
   public listarPorId(id: number) {
     return this.http.get(environment.url_api + 'brecho/' + id);
   }
 
-  public atualizar(brecho: any, id: number) { // Corrigido o parâmetro para 'brecho'
-    return this.http.put(environment.url_api + 'brecho/' + id, brecho); // Corrigido o parâmetro para 'brecho'
+  // Método para atualizar um brechó existente
+  public atualizar(brecho: any, id: number) {
+    return this.http.put(environment.url_api + 'brecho/' + id, brecho);
   }
 
+  // Método para excluir um brechó
   public excluir(id: number) {
     return this.http.delete(environment.url_api + 'brecho/' + id);
   }
