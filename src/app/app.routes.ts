@@ -10,10 +10,6 @@ const routes: Routes = [
   { path: '**', redirectTo: '/pais' } // Rota de fallback para manipular rotas não encontradas
 ];
 
-export const routes: Routes = [
-    // Suas rotas aqui
-];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

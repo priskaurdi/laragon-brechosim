@@ -13,16 +13,16 @@ export class BrechoService {
     return this.http.get(environment.url_api + 'brecho');
   }
 
-  public criar(pais: any) {
-    return this.http.post(environment.url_api + 'brecho', pais);
+  public criar(brecho: any) { // Corrigido o parâmetro para 'brecho'
+    return this.http.post(environment.url_api + 'brecho', brecho); // Corrigido o parâmetro para 'brecho'
   }
 
   public listarPorId(id: number) {
     return this.http.get(environment.url_api + 'brecho/' + id);
   }
 
-  public atualizar(pais: any, id: number) {
-    return this.http.put(environment.url_api + 'brecho/' + id, pais);
+  public atualizar(brecho: any, id: number) { // Corrigido o parâmetro para 'brecho'
+    return this.http.put(environment.url_api + 'brecho/' + id, brecho); // Corrigido o parâmetro para 'brecho'
   }
 
   public excluir(id: number) {

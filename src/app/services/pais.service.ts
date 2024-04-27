@@ -14,16 +14,16 @@ export class PaisService {
     return this.http.get(environment.url_api + 'paises');
   }
 
-  public criar(pais: any) {
-    return this.http.post(environment.url_api + 'paises', pais);
+  public criar(país: any) { // Corrigido o parâmetro para 'país'
+    return this.http.post(environment.url_api + 'paises', país); // Corrigido o parâmetro para 'país'
   }
 
   public listarPorId(id: number) {
     return this.http.get(environment.url_api + 'paises/' + id);
   }
 
-  public atualizar(pais: any, id: number) {
-    return this.http.put(environment.url_api + 'paises/' + id, pais);
+  public atualizar(país: any, id: number) { // Corrigido o parâmetro para 'país'
+    return this.http.put(environment.url_api + 'paises/' + id, país); // Corrigido o parâmetro para 'país'
   }
 
   public excluir(id: number) {
