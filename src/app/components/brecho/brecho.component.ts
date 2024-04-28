@@ -32,6 +32,7 @@ export class BrechoComponent implements OnInit {
       this.paises = resp;
     });
   }
+
   
   public listar(): void {
     this._brechoService.listar().subscribe(resp => {
@@ -44,7 +45,7 @@ export class BrechoComponent implements OnInit {
       this.brechoForm.nome !== "" &&
       this.brechoForm.descricao !== "" &&
       this.brechoForm.pais_id !== "" &&
-      this.brechoForm.dt_fundacao !== ""
+      this.brechoForm.dt_cadastro !== ""
     ) {
       this._brechoService.criar(this.brechoForm).subscribe(resp => {
         this.listar();

@@ -1,6 +1,6 @@
 <p>brecho works!</p>
 
-<h4>Cadastrar Brecho</h4>
+<h4>Cadastrar Agenda Brecho</h4>
 <form action="" class="m-bottom">
   <div class="m-topo m-bottom">
     <label for="nome">Nome <span class="txt-vermelho">*</span>:</label> <br>
@@ -8,16 +8,30 @@
   </div>
 
   <div class="m-topo m-bottom">
-    <label for="dtFundacao">Data da Fundação <span class="txt-vermelho">*</span>:</label> <br>
-    <input type="date" name="dtFundacao" [(ngModel)]="brechoForm.dt_fundacao">
+    <label for="dtCadastro">Data de Cadastro <span class="txt-vermelho">*</span>:</label> <br>
+    <input type="date" name="dtCadastro" [(ngModel)]="brechoForm.dt_cadastro">
   </div>
 
-  <div class="m-topo m-bottom">
+  <div class="m-topo m-bottom">_
     <label for="pais">País <span class="txt-vermelho">*</span>:</label> <br>
     <select name="pais" [(ngModel)]="brechoForm.pais_id" [disabled]="brechoForm.id">
       <option value="">Selecione...</option>
-      <option *ngFor="let pais of paises" value="{{ pais.id }}">{{ pais.nome }}</option>
+      <option *ngFor="let pais of paises" value="{{ pais.id_pais }}">{{ pais.nm_pais }}</option>
     </select>
+        <div class="m-topo m-bottom">_
+          <label for="estado">Estado <span class="txt-vermelho">*</span>:</label> <br>
+          <select name="pais" [(ngModel)]="brechoForm.pais_id" [disabled]="brechoForm.id">
+            <option value="">Selecione...</option>
+            <option *ngFor="let estado of pais" value="{{ pais.id_estado }}">{{ pais.nm_estado }}</option>
+        </select>
+          <div class="m-topo m-bottom">_
+            <label for="cidade">Cidade <span class="txt-vermelho">*</span>:</label> <br>
+            <select name="cidade" [(ngModel)]="brechoForm.pais_id" [disabled]="brechoForm.id">
+              <option value="">Selecione...</option>
+              <option *ngFor="let cidade of estado" value="{{ pais.id_cidade }}">{{ pais.nm_cidade }}</option>
+          </select>
+          </div>>
+      </div>
   </div>
 
   <div class="m-topo m-bottom">
@@ -30,7 +44,7 @@
   </button>
 
   <button *ngIf="brechoForm.id" type="submit" class="btn" (click)="atualizar()">
-    Salvar
+    Atualizar
   </button>
 
   <button *ngIf="brechoForm.id" type="submit" class="btn" (click)="cancelar()">
@@ -41,13 +55,13 @@
 
 <hr>
 
-<h4>Lista de Brecho</h4>
+<h4>Lista do Brecho</h4>
 <table class="table m-topo  m-bottom">
   <thead>
     <tr>
       <th>#</th>
       <th>Nome</th>
-      <th>Data Fundação</th>
+      <th>Data Cadastro</th>
       <th>Descrição</th>
       <th>Ações</th>
     </tr>
@@ -56,7 +70,7 @@
     <tr *ngFor="let brecho of brecho;">
       <td>{{ brecho.id }}</td>
       <td>{{ brecho.nome }}</td>
-      <td>{{ brecho.dt_fundacao }}</td>
+      <td>{{ brecho.dt_cadastro }}</td>
       <td>{{ brecho.descricao }}</td>
       <td class="text-center">
         <button (click)="editar(brecho)">Editar</button>
