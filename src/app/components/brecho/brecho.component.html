@@ -16,22 +16,8 @@
     <label for="pais">País <span class="txt-vermelho">*</span>:</label> <br>
     <select name="pais" [(ngModel)]="brechoForm.pais_id" [disabled]="brechoForm.id">
       <option value="">Selecione...</option>
-      <option *ngFor="let pais of paises" value="{{ pais.id_pais }}">{{ pais.nm_pais }}</option>
+      <option *ngFor="let pais of paises" value="{{ pais.id }}">{{ pais.nome }}</option>
     </select>
-        <div class="m-topo m-bottom">_
-          <label for="estado">Estado <span class="txt-vermelho">*</span>:</label> <br>
-          <select name="pais" [(ngModel)]="brechoForm.pais_id" [disabled]="brechoForm.id">
-            <option value="">Selecione...</option>
-            <option *ngFor="let estado of pais" value="{{ pais.id_estado }}">{{ pais.nm_estado }}</option>
-        </select>
-          <div class="m-topo m-bottom">_
-            <label for="cidade">Cidade <span class="txt-vermelho">*</span>:</label> <br>
-            <select name="cidade" [(ngModel)]="brechoForm.pais_id" [disabled]="brechoForm.id">
-              <option value="">Selecione...</option>
-              <option *ngFor="let cidade of estado" value="{{ pais.id_cidade }}">{{ pais.nm_cidade }}</option>
-          </select>
-          </div>>
-      </div>
   </div>
 
   <div class="m-topo m-bottom">

@@ -11,7 +11,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  //declarations: [], // Não há declarações neste módulo de rotas
+  declarations: [], // Não há declarações neste módulo de rotas
   imports: [RouterModule.forChild(routes)], // Importa o módulo de roteamento com as rotas definidas
   exports:[RouterModule] // Exporta o RouterModule para que as rotas sejam utilizadas em outros módulos
 })
