@@ -10,19 +10,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 // // Importe o módulo do componente PaisModule para carregamento preguiçoso (lazy loading)
-// import { PaisModule } from './components/pais/pais.module';
+import { PaisModule } from './components/pais/pais.module';
 
 // // Define as rotas da aplicação
-// const appRoutes: Routes = [
+const appRoutes: Routes = [
 //   // ... outras rotas
-//   {
+{
 //     // Define o caminho da rota
-//     path: 'pais', 
+path: 'pais', 
 
 //     // Carrega o módulo do componente PaisModule de forma preguiçosa (lazy loading)
-//     loadChildren: () => import('./components/pais/pais.module').then(m => m.PaisModule)
-//   }
-// ];
+loadChildren: () => import('./components/pais/pais.module').then(m => m.PaisModule)
+}
+];
 
 @NgModule({
   declarations: [ AppComponent ],
