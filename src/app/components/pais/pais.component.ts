@@ -94,3 +94,41 @@ interface Pais {
   capital: string;
   // Outras propriedades de um objeto pais
 }
+
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../services/product.service'; // Importar o serviço ProductService para buscar dados de produtos
+import { Product } from '../models/product.model'; // Importar o modelo de dados Product
+
+@Component({
+  selector: 'app-pais',
+  templateUrl: './pais.component.html',
+  styleUrls: ['./pais.component.css']
+})
+export class PaisComponent implements OnInit {
+  products: Product[] = []; // Lista de produtos
+
+  constructor(private productService: ProductService) { }
+
+  ngOnInit(): void {
+    // Chamada para buscar dados de produtos ao inicializar o componente
+    this.getProducts();
+  }
+
+  // Função para buscar dados de produtos
+  getProducts() {
+    this.productService.getProducts().subscribe((data: Product[]) => {
+      this.products = data;
+    });
+  }
+
+  // Função para adicionar produto ao carrinho
+  addToCart(product: Product) {
+    // Implementar lógica para adicionar produto ao carrinho
+  }
+
+  // Função para atualizar quantidade de produto no carrinho
+  updateQuantity(product: Product, quantity: number) {
+    // Implementar lógica para atualizar quantidade de produto no carrinho
+  }
+}
+
