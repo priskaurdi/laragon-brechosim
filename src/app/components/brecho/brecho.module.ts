@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { PaisService } from '../../services/pais.service';
 import { BrechoService } from '../../services/brecho.service';
+import { ClienteService } from '../../services/cliente.service';
+import { routes } from '../../app.routes';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { BrechoService } from '../../services/brecho.service';
   
   providers: [
     PaisService, // Provedor do serviço de países
-    BrechoService // Provedor do serviço de brechós
+    BrechoService, // Provedor do serviço de brechós
+    ClienteService
   ],
   bootstrap: [BrechoComponent] // Define BrechoComponent como o componente de inicialização do módulo (isso é incomum em módulos)
 })
