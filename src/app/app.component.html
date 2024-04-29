@@ -15,3 +15,90 @@
 </div>
 
 
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Minha Loja Online</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Produtos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Carrinho</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Checkout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mt-4">
+    <!-- Product Listings -->
+    <h2>Produtos Disponíveis</h2>
+    <div class="row">
+        <!-- Product Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="product1.jpg" class="card-img-top" alt="Product Image">
+                <div class="card-body">
+                    <h5 class="card-title">Produto 1</h5>
+                    <p class="card-text">Descrição do Produto 1.</p>
+                    <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
+                </div>
+            </div>
+        </div>
+        <!-- Repeat for other products -->
+    </div>
+
+    <!-- Shopping Cart -->
+    <h2 class="mt-5">Carrinho de Compras</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <ul class="list-group">
+                <!-- Cart Items -->
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Produto 1
+                    <span class="badge bg-primary rounded-pill">1</span>
+                </li>
+                <!-- Repeat for other cart items -->
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Resumo do Pedido</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Total
+                            <span class="badge bg-primary rounded-pill">$100.00</span>
+                        </li>
+                    </ul>
+                    <button class="btn btn-success mt-3">Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Form -->
+    <h2 class="mt-5">Checkout</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="name" placeholder="Seu Nome">
+                </div>
+                <!-- More form fields for address, payment info, etc. -->
+                <button type="submit" class="btn btn-primary">Enviar Pedido</button>
+            </form>
+        </div>
+    </div>
+</div>
