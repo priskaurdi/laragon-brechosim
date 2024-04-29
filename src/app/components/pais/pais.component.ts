@@ -8,8 +8,8 @@ import { PaisService } from '../../services/pais.service';
 })
 export class PaisComponent implements OnInit {
 
-  public paises: any[] = [];
-  public pais: any = this._iniciarPais();
+  public paises: Pais[] = []; // Array of Pais objects
+  public pais: Pais = this._iniciarPais(); // Pais object
 
   constructor(private _paisService: PaisService) { }
 
@@ -20,7 +20,7 @@ export class PaisComponent implements OnInit {
   // Método para listar os países
   public listar(): void {
     this._paisService.listar().subscribe(resp => {
-      this.paises = resp;
+      this.paises = resp as Pais[]; // Cast response to Pais array
     });
   }
 
@@ -44,7 +44,7 @@ export class PaisComponent implements OnInit {
   }
 
   // Método para iniciar um novo objeto pais
-  private _iniciarPais(): any {
+  private _iniciarPais(): Pais {
     return {
       id: null,
       nome: "",
@@ -53,7 +53,7 @@ export class PaisComponent implements OnInit {
   }
 
   // Método para editar um país
-  public editar(pais: any): void {
+  public editar(pais: Pais): void {
     this.pais = pais;
     // Display form in edit mode with pre-populated data
   }
@@ -65,4 +65,32 @@ export class PaisComponent implements OnInit {
       alert('País excluído!');
     });
   }
+
+  public cancelar(): void {
+    this.pais = this._iniciarPais(); // Clear the pais object
+    // Reset form (if applicable)
+  }
+
+  // Método para atualizar um país
+  public atualizar(): void {
+    if (this.pais.nome !== "") {
+      if (this.pais.id) { // Verifica se o país possui ID (edição)
+        this._paisService.atualizar(this.pais, this.pais.id).subscribe(resp => {
+          alert('Atualizado!');
+          this.listar();
+          this.pais = this._iniciarPais(); // Limpa o objeto pais
+        });
+      } else {
+        console.error('Erro ao atualizar país: ID não encontrado');
+      }
+    }
+  }
+}
+
+// Interface para definir a estrutura do objeto Pais
+interface Pais {
+  id: number;
+  nome: string;
+  capital: string;
+  // Outras propriedades de um objeto pais
 }
