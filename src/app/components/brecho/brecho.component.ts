@@ -11,7 +11,7 @@ export class BrechoComponent implements OnInit {
 
   public paises: any = [];
   public brecho: any = [];
-  public brechoForm: any = this._iniciarBrecho();
+  public brechoForm: any = { ...this._iniciarBrecho(), produto: this._iniciarProduto(), clientes: this._iniciarCliente() };
 
   constructor(
     private _paisService: PaisService,
@@ -23,17 +23,12 @@ export class BrechoComponent implements OnInit {
     this.listar();
   }
 
-  // interface BrechoResponse {
-  //   // Propriedades da resposta do serviço de listar brechós
-  // }
-
   public buscarPaises(): void {
     this._paisService.listar().subscribe(resp => {
       this.paises = resp;
     });
   }
 
-  
   public listar(): void {
     this._brechoService.listar().subscribe(resp => {
       this.brecho = resp;
@@ -45,11 +40,15 @@ export class BrechoComponent implements OnInit {
       this.brechoForm.nome !== "" &&
       this.brechoForm.descricao !== "" &&
       this.brechoForm.pais_id !== "" &&
-      this.brechoForm.dt_cadastro !== ""
+      this.brechoForm.dt_cadastro !== "" &&
+      this.brechoForm.produto.cdProduto !== "" &&
+      this.brechoForm.produto.nmProduto !== "" &&
+      this.brechoForm.clientes.cdCliente !== "" &&
+      this.brechoForm.clientes.nmCliente !== ""
     ) {
       this._brechoService.criar(this.brechoForm).subscribe(resp => {
         this.listar();
-        this.brecho = this._iniciarBrecho();
+        this.brechoForm = this._iniciarBrecho();
         alert('Cadastrado!');
       });
     }
@@ -64,11 +63,15 @@ export class BrechoComponent implements OnInit {
       this.brechoForm.nome !== "" &&
       this.brechoForm.descricao !== "" &&
       this.brechoForm.pais_id !== "" &&
-      this.brechoForm.dt_fundacao !== "" 
+      this.brechoForm.dt_fundacao !== "" &&
+      this.brechoForm.produto.cdProduto !== "" &&
+      this.brechoForm.produto.nmProduto !== "" &&
+      this.brechoForm.clientes.cdCliente !== "" &&
+      this.brechoForm.clientes.nmCliente !== ""
     ) {
       this._brechoService.atualizar(this.brechoForm, this.brechoForm.id).subscribe(resp => {
         alert('Atualizado!');
-        this.brecho = this._iniciarBrecho();
+        this.brechoForm = this._iniciarBrecho();
         this.listar();
       });
     }
@@ -87,11 +90,44 @@ export class BrechoComponent implements OnInit {
 
   private _iniciarBrecho() {
     return {
-      id: null,
-      nome: '',
-      descricao: '',
-      dt_fundacao: '',
-      pais_id: ''
+      cdPedido: null,
+      cdProduto: '',
+      cdCliente: '',
+      dtAgendamento: '',
+      dtContato: '',
+      qtProduto: null
+    };
+  }
+
+  private _iniciarProduto() {
+    return {
+      cdProduto: '',
+      nmProduto: '',
+      cdFornecedor: '',
+      nmFornecedor: '',
+      cdCategoria: '',
+      nmCategoria: '',
+      cdUnidade: '',
+      dsUnidade: '',
+      vlUnidade: null,
+      idFotoProduto: null
+    };
+  }
+
+  private _iniciarCliente() {
+    return {
+      cdCliente: '',
+      nmCliente: '',
+      cpf: '',
+      celular: '',
+      endereco: {
+        numero: '',
+        compEnd: '',
+        bairro: '',
+        cidade: '',
+        estado: '',
+        cep: ''
+      }
     };
   }
 }
