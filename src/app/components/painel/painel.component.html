@@ -5,13 +5,27 @@
 
     <!-- Primeira caixa de informações -->
     <div class="box box-azul">
-        <p>Total Países</p><br> <!-- Título indicando o que a informação representa -->
-        <span>{{nuPaises}}</span> <!-- Variável que será exibida dinamicamente com o número total de países -->
+        <div class="card product-card">
+            <img class="product-image" [src]="product.imageUrl" alt="{{ product.name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">{{ product.description }}</p>
+              <p class="card-text">R$ {{ product.price }}</p>
+              <button class="btn btn-primary" (click)="addToCart(product)">Adicionar ao Carrinho</button>
+            </div>
+          </div>
     </div>
 
     <!-- Segunda caixa de informações -->
     <div class="box box-verde">
-        <p>Total Brecho</p><br> <!-- Título indicando o que a informação representa -->
-        <span>{{nuBrechos}}</span> <!-- Variável que será exibida dinamicamente com o número total de brechós -->
+        <div class="product-list">
+            <app-pais-card *ngFor="let product of products" [product]="product"></app-pais-card>
+          </div>
     </div>
 </div>
+
+
+
+
+  
+  

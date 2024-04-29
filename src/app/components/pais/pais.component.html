@@ -1,20 +1,20 @@
-<p>pais works!</p> <!-- Texto de verificação de funcionamento do componente -->
+<p>produto works!</p> <!-- Texto de verificação de funcionamento do componente -->
 
-<h4>Cadastrar País</h4>
-<form action="" class="m-bottom"> <!-- Formulário para cadastrar um país -->
+<h4>Cadastrar Produto</h4>
+<form action="" class="m-bottom"> <!-- Formulário para cadastrar um produto -->
   <div>
-    <label for="nome">Nome <span class="txt-vermelho">*</span>:</label> <br> <!-- Campo de entrada para o nome do país -->
-    <input type="text" name="nome" [(ngModel)]="pais.nome"> <!-- Bind de duas vias para o nome do país -->
+    <label for="nome">Nome <span class="txt-vermelho">*</span>:</label> <br> <!-- Campo de entrada para o nome do produto -->
+    <input type="text" name="nome" [(ngModel)]="produto.nome"> <!-- Bind de duas vias para o nome do produto -->
   </div>
 
   <!-- Botões de ação para salvar, atualizar e cancelar -->
-  <button *ngIf="!pais.id" type="submit" class="btn m-topo" (click)="salvar()"> <!-- Botão para salvar um novo país -->
+  <button *ngIf="produto.id" type="submit" class="btn m-topo" (click)="salvar()"> <!-- Botão para salvar um novo produto -->
     Salvar
   </button>
-  <button *ngIf="pais.id" type="submit" class="btn m-topo" (click)="atualizar()"> <!-- Botão para atualizar um país existente -->
+  <button *ngIf="produto.id" type="submit" class="btn m-topo" (click)="atualizar()"> <!-- Botão para atualizar um produto existente -->
     Atualizar
   </button>
-  <button *ngIf="pais.id" type="submit" class="btn m-topo" (click)="cancelar()"> <!-- Botão para cancelar a edição de um país -->
+  <button *ngIf="produto.id" type="submit" class="btn m-topo" (click)="cancelar()"> <!-- Botão para cancelar a edição de um produto -->
     Cancelar
   </button>
   
@@ -22,8 +22,8 @@
 
 <hr>
 
-<h4>Lista de Países</h4>
-<table class="table m-topo m-bottom"> <!-- Tabela para exibir a lista de países -->
+<h4>Lista de Produtos</h4>
+<table class="table m-topo m-bottom"> <!-- Tabela para exibir a lista de produtos -->
   <thead>
     <tr>
       <th>#</th> <!-- Cabeçalho da coluna de identificação -->
@@ -31,19 +31,19 @@
       <th>Ações</th> <!-- Cabeçalho da coluna de ações -->
     </tr>
   </thead>
-  <tbody *ngIf="paises.length > 0"> <!-- Verifica se há países na lista -->
-    <!-- Loop para exibir cada país na tabela -->
-    <tr *ngFor="let pais of paises;">
-      <td>{{ pais.id }}</td> <!-- Coluna com o ID do país -->
-      <td>{{ pais.nome }}</td> <!-- Coluna com o nome do país -->
+  <tbody *ngIf="produtoes.length > 0"> <!-- Verifica se há produtoes na lista -->
+    <!-- Loop para exibir cada produto na tabela -->
+    <tr *ngFor="let produto of produtoes;">
+      <td>{{ produto.id }}</td> <!-- Coluna com o ID do produto -->
+      <td>{{ produto.nome }}</td> <!-- Coluna com o nome do produto -->
       <td>
-        <!-- Botões de ação para editar e excluir o país -->
-        <button (click)="editar(pais)">Editar</button> <!-- Botão para editar o país -->
-        <button (click)="excluir(pais.id)">Excluir</button> <!-- Botão para excluir o país -->
+        <!-- Botões de ação para editar e excluir o produto -->
+        <button (click)="editar(produto)">Editar</button> <!-- Botão para editar o produto -->
+        <button (click)="excluir(produto.id)">Excluir</button> <!-- Botão para excluir o produto -->
       </td>
     </tr>
   </tbody>
-  <tbody *ngIf="paises.length == 0"> <!-- Caso não haja países na lista -->
+  <tbody *ngIf="produtos.length == 0"> <!-- Caso não haja produtoes na lista -->
     <tr>
       <td class="text-center" colspan="3"> <!-- Mensagem indicando que nenhum resultado foi encontrado -->
         Nenhum resultado encontrado.
