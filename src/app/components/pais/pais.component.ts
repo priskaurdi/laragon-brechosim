@@ -1,15 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PaisService } from '../../services/pais.service';
-
-
-// Interface para definir a estrutura do objeto Pais
-interface Pais {
-  id: number;
-  nome: string;
-  capital: string;
-  // Outras propriedades de um objeto pais
-}
-
+import { Pais } from '../../models/pais.model'; // Importa o modelo de país
 
 @Component({
   selector: 'app-pais',
@@ -17,37 +8,36 @@ interface Pais {
   styleUrls: ['./pais.component.scss']
 })
 export class PaisComponent implements OnInit {
+  paises: Pais[] = []; // Array para armazenar a lista de países
+  pais: Pais = this._iniciarPais(); // Objeto para armazenar dados do país
 
-  public paises: Pais[] = []; // Array of Pais objects
-  public pais: Pais = { id: 0, nome: '', capital: '' };
-  
-  constructor(private _paisService: PaisService) { }
+  constructor(private _paisService: PaisService) {}
 
   ngOnInit(): void {
-    this.listar();
+    this.listar(); // Chama o método para listar os países ao inicializar o componente
   }
 
   // Método para listar os países
   public listar(): void {
     this._paisService.listar().subscribe(resp => {
-      this.paises = resp as Pais[]; // Cast response to Pais array
+      this.paises = resp;
     });
   }
 
   // Método para salvar ou atualizar um país
   public salvar(): void {
-    if (this.pais.nome !== "") {
-      if (this.pais.id) { // Verifica se o país possui ID (edição)
-        this._paisService.atualizar(this.pais, this.pais.id).subscribe(resp => {
+    if (this.pais.nome.trim() !== "") {
+      if (this.pais.id) {
+        this._paisService.atualizar(this.pais, this.pais.id).subscribe(() => {
           alert('Atualizado!');
           this.listar();
-          this.pais = this._iniciarPais(); // Limpa o objeto pais
+          this.pais = this._iniciarPais();
         });
-      } else { // Novo país
-        this._paisService.criar(this.pais).subscribe(resp => {
+      } else {
+        this._paisService.criar(this.pais).subscribe(() => {
           alert('Cadastrado!');
           this.listar();
-          this.pais = this._iniciarPais(); // Limpa o objeto pais
+          this.pais = this._iniciarPais();
         });
       }
     }
@@ -55,15 +45,15 @@ export class PaisComponent implements OnInit {
 
   // Método para editar um país
   public editar(pais: Pais): void {
-    this.pais = pais;
+    this.pais = Object.assign({}, pais);
     // Display form in edit mode with pre-populated data
   }
 
   // Método para excluir um país
   public excluir(paisId: number): void {
     this._paisService.excluir(paisId).subscribe(resp => {
-      this.paises = this.paises.filter(p => p.id !== paisId);
       alert('País excluído!');
+      this.listar();
     });
   }
 
@@ -87,16 +77,12 @@ export class PaisComponent implements OnInit {
     }
   }
 
-
-
-// Método para iniciar um novo objeto pais
-private _iniciarPais() {
-  return {
-    id: null,
-    nome: "",
-    capital: ""
-  };
-}
-
-
+  // Método para iniciar um novo objeto pais
+  private _iniciarPais() {
+    return {
+      id: null,
+      nome: "",
+      capital: ""
+    };
+  }
 }

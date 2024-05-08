@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
-// Remova a importação desnecessária do RouterOutlet
-// O RouterOutlet é uma diretiva usada no template, não precisa ser importado no componente
+
 
 @Component({
   // 'selector' define o seletor CSS que identifica este componente no template HTML
@@ -17,5 +16,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   // 'title' é uma propriedade do componente usada no template para exibir o título
-  title = 'brechosim';
+  title = 'BrechoSim';
 }

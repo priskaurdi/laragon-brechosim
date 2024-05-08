@@ -1,42 +1,33 @@
 <p>brecho works!</p>
 
 <h4>BrechóSim</h4>
-<form action="" class="m-bottom">
+<form action="" class="m-bottom" (ngSubmit)="criar()" #brechoForm="ngForm">
   <div class="m-topo m-bottom">
     <label for="nome">Nome <span class="txt-vermelho">*</span>:</label> <br>
-    <input type="text" name="nome" [(ngModel)]="brechoForm.nome">
+    <input type="text" name="nome" [(ngModel)]="brechoForm.nome" required>
   </div>
 
   <div class="m-topo m-bottom">
     <label for="dtFundacao">Data da Fundação <span class="txt-vermelho">*</span>:</label> <br>
-    <input type="date" name="dtFundacao" [(ngModel)]="brechoForm.dt_fundacao">
+    <input type="date" name="dtFundacao" [(ngModel)]="brechoForm.dt_fundacao" required>
   </div>
 
   <div class="m-topo m-bottom">
     <label for="pais">País <span class="txt-vermelho">*</span>:</label> <br>
-    <select name="pais" [(ngModel)]="brechoForm.pais_id" [disabled]="brechoForm.id">
+    <select name="pais" [(ngModel)]="brechoForm.pais_id" required>
       <option value="">Selecione...</option>
-      <option *ngFor="let pais of paises" value="{{ pais.id }}">{{ pais.nome }}</option>
+      <option *ngFor="let pais of paises" [value]="pais.id">{{ pais.nome }}</option>
     </select>
   </div>
 
   <div class="m-topo m-bottom">
     <label for="descricao">Descrição <span class="txt-vermelho">*</span>:</label> <br>
-    <textarea name="descricao" cols="30" rows="10" [(ngModel)]="brechoForm.descricao"></textarea>
+    <textarea name="descricao" cols="30" rows="10" [(ngModel)]="brechoForm.descricao" required></textarea>
   </div>
 
-  <button *ngIf="!brechoForm.id" type="submit" class="btn" (click)="criar()">
-    Salvar
-  </button>
-
-  <button *ngIf="brechoForm.id" type="submit" class="btn" (click)="atualizar()">
-    Salvar
-  </button>
-
-  <button *ngIf="brechoForm.id" type="submit" class="btn" (click)="cancelar()">
-    Cancelar
-  </button>
-  
+  <button type="submit" class="btn" [hidden]="brechoForm.id">{{ brechoForm.id ? 'Atualizar' : 'Salvar' }}</button>
+  <button type="button" class="btn" [hidden]="!brechoForm.id" (click)="atualizar()">Atualizar</button>
+  <button type="button" class="btn" [hidden]="!brechoForm.id" (click)="cancelar()">Cancelar</button>
 </form>
 
 <hr>
@@ -48,25 +39,27 @@
       <th>#</th>
       <th>Nome</th>
       <th>Data Fundação</th>
+      <th>País</th>
       <th>Descrição</th>
       <th>Ações</th>
     </tr>
   </thead>
   <tbody *ngIf="brecho.length > 0">
-    <tr *ngFor="let brecho of brecho;">
-      <td>{{ brecho.id }}</td>
-      <td>{{ brecho.nome }}</td>
-      <td>{{ brecho.dt_fundacao }}</td>
-      <td>{{ brecho.descricao }}</td>
+    <tr *ngFor="let item of brecho;">
+      <td>{{ item.id }}</td>
+      <td>{{ item.nome }}</td>
+      <td>{{ item.dt_fundacao }}</td>
+      <td>{{ item.pais_id }}</td>
+      <td>{{ item.descricao }}</td>
       <td class="text-center">
-        <button (click)="editar(brecho)">Editar</button>
-        <button (click)="excluir(brecho.id)">Excluir</button>
+        <button (click)="editar(item)">Editar</button>
+        <button (click)="excluir(item.id)">Excluir</button>
       </td>
     </tr>
   </tbody>
   <tbody *ngIf="brecho.length == 0">
     <tr>
-      <td class="text-center" colspan="5">
+      <td class="text-center" colspan="6">
         Nenhum resultado encontrado.
       </td>
     </tr>

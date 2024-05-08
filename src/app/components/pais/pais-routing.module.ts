@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PaisComponent } from './pais.component';
 
-// Definição das rotas 
 const routes: Routes = [
   {
     path: '', // Rota padrão para o componente PaisComponent
@@ -11,7 +10,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)], // Importa o módulo de roteamento com as rotas definidas
-  exports:[RouterModule] // Exporta o RouterModule para que as rotas sejam utilizadas em outros módulos
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class PaisRoutingModule { }

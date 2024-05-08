@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaisComponent } from './pais.component'; // Importa o componente de países
-import { PaisRoutingModule } from './pais-routing.module'; // Importa o módulo de roteamento de países
-import { PaisService } from '../../services/pais.service'; // Importa o serviço de países
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Importa módulos de formulários
+import { PaisComponent } from './pais.component';
+import { PaisRoutingModule } from './pais-routing.module';
+import { PaisService } from '../../services/pais.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    PaisComponent // Declara o componente de países para uso dentro do módulo
+    PaisComponent
   ],
   imports: [
-    CommonModule, // Importa CommonModule para utilizar diretivas comuns do Angular
-    PaisRoutingModule, // Importa o módulo de roteamento de países
-    FormsModule, // Importa FormsModule para utilizar recursos de formulários no template
-    ReactiveFormsModule // Importa ReactiveFormsModule para utilizar recursos de formulários reativos no template
+    CommonModule,
+    PaisRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers:[
-    PaisService // Provedor do serviço de países
+    PaisService
   ]
 })
 export class PaisModule { }

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core'; 
+import { RouterModule, Routes } from '@angular/router'; 
 import { PainelComponent } from './components/painel/painel.component';
 
 const routes: Routes = [
@@ -20,6 +20,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: []
 })
 export class AppRoutingModule { }
