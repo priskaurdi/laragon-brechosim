@@ -1,6 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { PaisService } from '../../services/pais.service';
 
+
+// Interface para definir a estrutura do objeto Pais
+interface Pais {
+  id: number;
+  nome: string;
+  capital: string;
+  // Outras propriedades de um objeto pais
+}
+
+
 @Component({
   selector: 'app-pais',
   templateUrl: './pais.component.html',
@@ -9,8 +19,8 @@ import { PaisService } from '../../services/pais.service';
 export class PaisComponent implements OnInit {
 
   public paises: Pais[] = []; // Array of Pais objects
-  public pais: Pais = this._iniciarPais(); // Pais object
-
+  public pais: Pais = { id: 0, nome: '', capital: '' };
+  
   constructor(private _paisService: PaisService) { }
 
   ngOnInit(): void {
@@ -41,15 +51,6 @@ export class PaisComponent implements OnInit {
         });
       }
     }
-  }
-
-  // Método para iniciar um novo objeto pais
-  private _iniciarPais(): Pais {
-    return {
-      id: null,
-      nome: "",
-      capital: ""
-    };
   }
 
   // Método para editar um país
@@ -85,12 +86,17 @@ export class PaisComponent implements OnInit {
       }
     }
   }
+
+
+
+// Método para iniciar um novo objeto pais
+private _iniciarPais() {
+  return {
+    id: null,
+    nome: "",
+    capital: ""
+  };
 }
 
-// Interface para definir a estrutura do objeto Pais
-interface Pais {
-  id: number;
-  nome: string;
-  capital: string;
-  // Outras propriedades de um objeto pais
+
 }
